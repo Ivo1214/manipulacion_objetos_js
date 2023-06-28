@@ -21,6 +21,20 @@ con los datos almacenados en memoria, a fin de darle la bienvenida al usuario lo
 
 */
 
+
+document.getElementById("btnIngresar").onclick = () => {
+    let email= document.getElementById("email").value;
+    let usuario = document.getElementById("usuario").value;
+
+    localStorage.setItem("usuario", usuario);
+    localStorage.setItem("email", email);
+    document.getElementById("usuarioLogeado").innerText = usuario;
+    document.getElementById("emailLogeado").innerHTML = email;
+
+    document.getElementById("login").classList.add("hidden");
+    document.getElementById("logout").classList.remove("hidden");
+}
+
 /* 2 - Enunciado
 
 - Al comenzar el script se debe verificar si en memoria se encuentran
@@ -32,6 +46,13 @@ y deberá revelar la sección "logout" (quitar la clase hidden).
 
 */
 
+if (localStorage.getItem("usuario") !== null && localStorage.getItem("email") !== null) {
+    document.getElementById("usuarioLogeado").innerText = localStorage.getItem("usuario");
+    document.getElementById("emailLogeado").innerHTML = localStorage.getItem("email");
+    document.getElementById("login").classList.add("hidden");
+    document.getElementById("logout").classList.remove("hidden");
+}
+
 /* 3 - Enunciado
 
 - Debera capturar el evento "onclick" del boton "Salir". Cuando este
@@ -41,3 +62,8 @@ volverse a cargar debería aparecer nuevamente la sección de bienvenida
 ya que no debería haber más datos en memoria cargados.
 
 */
+
+document.getElementById("btnSalir").onclick = () => {
+    localStorage.clear();
+    window.location.reload();
+}

@@ -20,6 +20,16 @@ un array de personas mayores o igual a 18 años.
 
 */
 
+let arrayPersonas = JSON.parse(personasJSON);
+
+
+
+let personasMayores = arrayPersonas.filter( persona => {
+    return persona.edad >= 18
+});
+
+console.log(personasMayores);
+
 /* 2 - Enunciado
 
 - Con el array de personas filtradas (resultado del enunciado anterior)
@@ -30,6 +40,16 @@ mecanismos que prefiera para agregar por cada persona el nombre y edad
 en el HTML (es decir, generar el contenido de forma dinámica).
 
 */
+
+let acumulador = "<h2>Personas con edad mayor o igual a 18</h2>";
+personasMayores.forEach(persona => {
+    acumulador += `
+                <p>Nombre: ${persona.nombre}</p>
+                <p>Edad: ${persona.edad}</p>
+                <br>`;
+});
+
+document.getElementById("personas").innerHTML = acumulador;
 
 /* 3 - BONUS TRACK
 
